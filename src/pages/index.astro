@@ -34,7 +34,22 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
         <h2>WiFi Gratis</h2>
-        <p class="wifi-subtitle">Conéctate en un solo paso. Elige una de las opciones para acceder a internet de alta velocidad.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <span>Elige una opción</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <span>Completa la acción</span>
+          </div>
+          <div class="step-arrow">→</div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <span>¡Conéctate!</span>
+          </div>
+        </div>
       </div>
 
       <!-- Option 1: Email Newsletter -->
@@ -328,6 +343,49 @@ import Layout from '../layouts/Layout.astro';
     line-height: 1.5;
     max-width: 320px;
     margin: 0 auto;
+  }
+
+  /* ===== Steps ===== */
+  .steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .step-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
+  }
+
+  .step span {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .step-arrow {
+    color: var(--gold-light);
+    font-size: 1.1rem;
+    margin-top: -14px;
   }
 
   /* ===== Option Cards ===== */
