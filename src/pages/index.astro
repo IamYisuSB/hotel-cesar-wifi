@@ -8,6 +8,7 @@ import Layout from '../layouts/Layout.astro';
     <button class="lang-btn active" data-lang="es" onclick="setLang('es')" title="Español">ES</button>
     <button class="lang-btn" data-lang="en" onclick="setLang('en')" title="English">EN</button>
     <button class="lang-btn" data-lang="ca" onclick="setLang('ca')" title="Català">CA</button>
+    <button class="lang-btn" data-lang="fr" onclick="setLang('fr')" title="Français">FR</button>
   </div>
 
   <!-- Hero Section -->
@@ -1039,6 +1040,42 @@ import Layout from '../layouts/Layout.astro';
       modal_accept: 'Acceptar',
       modal_enjoy: 'Gaudeix de la teva estada a l\'Hotel Cesar ✨',
     },
+    fr: {
+      wifi_title: 'WiFi Gratuit',
+      step1: 'Choisissez une option',
+      step2: 'Complétez l\'action',
+      step3: 'Connectez-vous !',
+      email_title: 'Abonnez-vous à notre newsletter',
+      email_desc: 'Recevez des offres exclusives et les nouveautés de l\'hôtel',
+      email_btn: 'S\'abonner',
+      email_note: 'Pas de spam. Désabonnez-vous à tout moment.',
+      email_placeholder: 'votreemail@exemple.com',
+      follow_title: 'Suivez-nous sur Instagram',
+      follow_desc: 'Découvrez des moments uniques à l\'Hotel Cesar',
+      follow_btn: 'Aller sur Instagram',
+      follow_confirm: '✓ Déjà abonné',
+      like_title: 'Likez notre publication',
+      like_desc: 'Soutenez notre contenu avec un ❤️',
+      like_btn: 'Voir la publication',
+      like_confirm: '✓ Déjà liké',
+      review_title: 'Laissez-nous un avis sur Google',
+      review_desc: 'Votre avis nous aide à nous améliorer',
+      review_btn: 'Aller sur Google',
+      review_confirm: '✓ Avis déjà laissé',
+      footer_legal_pre: 'En continuant, vous acceptez nos',
+      footer_terms: 'Conditions d\'utilisation',
+      footer_legal_and: 'et',
+      footer_privacy: 'Politique de confidentialité',
+      hotel_desc: 'Une expérience d\'hospitalité incomparable. Luxe, confort et attention personnalisée pour rendre votre séjour inoubliable.',
+      copyright: '© 2026 Hotel Cesar. Tous droits réservés.',
+      developed_by: 'Développé par',
+      modal_thanks: 'Merci !',
+      modal_desc: 'Vous pouvez maintenant vous connecter au réseau WiFi de l\'Hotel Cesar.',
+      modal_network: 'Réseau :',
+      modal_password: 'Mot de passe :',
+      modal_accept: 'Accepter',
+      modal_enjoy: 'Profitez de votre séjour à l\'Hotel Cesar ✨',
+    },
   };
 
   function setLang(lang: string) {
@@ -1079,6 +1116,7 @@ import Layout from '../layouts/Layout.astro';
     const browserLang = navigator.language.toLowerCase();
     if (browserLang.startsWith('ca')) return 'ca';
     if (browserLang.startsWith('en')) return 'en';
+    if (browserLang.startsWith('fr')) return 'fr';
     // Default to Spanish
     return 'es';
   }
