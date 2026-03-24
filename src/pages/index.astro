@@ -399,6 +399,8 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     gap: 10px;
     margin-top: 16px;
+    flex-wrap: nowrap;
+    padding: 0 4px;
   }
 
   .step {
@@ -406,6 +408,8 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     gap: 6px;
+    min-width: 0;
+    flex: 1;
   }
 
   .step-number {
@@ -420,19 +424,22 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
     justify-content: center;
     box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
+    flex-shrink: 0;
   }
 
   .step span {
     font-size: 0.72rem;
     color: var(--text-light);
     font-weight: 500;
-    white-space: nowrap;
+    text-align: center;
+    word-break: break-word;
   }
 
   .step-arrow {
     color: var(--gold-light);
     font-size: 1.1rem;
     margin-top: -14px;
+    flex-shrink: 0;
   }
 
   /* ===== Option Cards ===== */
@@ -797,6 +804,8 @@ import Layout from '../layouts/Layout.astro';
   /* ===== Responsive ===== */
   @media (max-width: 600px) {
     .logo-img { width: 100px; }
+    .steps { gap: 6px; }
+    .step span { font-size: 0.65rem; }
   }
 
   @media (max-width: 400px) {
@@ -807,6 +816,10 @@ import Layout from '../layouts/Layout.astro';
     .btn-submit { width: 100%; }
     .action-row { flex-direction: column; }
     .action-row .btn { width: 100%; }
+    .steps { gap: 4px; }
+    .step-number { width: 26px; height: 26px; font-size: 0.75rem; }
+    .step span { font-size: 0.6rem; }
+    .step-arrow { font-size: 0.9rem; }
   }
 </style>
 
