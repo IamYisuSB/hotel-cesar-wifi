@@ -173,6 +173,7 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
       <p class="copyright">© 2026 Hotel Cesar. Todos los derechos reservados.</p>
+      <p class="developed-by">Desarrollado por <a href="https://fooserd.com" target="_blank" rel="noopener noreferrer" class="fooserd-link">Fooserd</a></p>
     </footer>
   </main>
 
@@ -645,6 +646,23 @@ import Layout from '../layouts/Layout.astro';
     font-size: 0.72rem;
     color: var(--text-light);
     padding: 16px 0 4px;
+  }
+
+  .developed-by {
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-light);
+    padding-bottom: 8px;
+  }
+
+  .fooserd-link {
+    color: #c0392b;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .fooserd-link:hover {
+    text-decoration: underline;
   }
 
   /* ===== Responsive ===== */
