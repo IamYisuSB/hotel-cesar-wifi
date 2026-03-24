@@ -748,10 +748,8 @@ import Layout from '../layouts/Layout.astro';
   }
 
   function closeModal() {
-    document.getElementById('successModal')?.classList.add('hidden');
-    document.body.style.overflow = '';
-    // In a real captive portal, you would redirect to the gateway here
-    // window.location.href = 'http://gateway.hotel/login?grant=true';
+    // Redirigir a Google al cerrar el modal
+    window.location.href = 'https://www.google.com';
   }
 
   // ===== Email form =====
