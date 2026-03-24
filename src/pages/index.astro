@@ -3,6 +3,13 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Hotel Cesar · WiFi Gratis">
+  <!-- Language Switcher -->
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-btn active" data-lang="es" onclick="setLang('es')" title="Español">ES</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" title="English">EN</button>
+    <button class="lang-btn" data-lang="ca" onclick="setLang('ca')" title="Català">CA</button>
+  </div>
+
   <!-- Hero Section -->
   <div class="hero">
     <div class="hero-overlay"></div>
@@ -33,21 +40,21 @@ import Layout from '../layouts/Layout.astro';
             <line x1="12" y1="20" x2="12.01" y2="20"/>
           </svg>
         </div>
-        <h2>WiFi Gratis</h2>
+        <h2 data-i18n="wifi_title">WiFi Gratis</h2>
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
-            <span>Elige una opción</span>
+            <span data-i18n="step1">Elige una opción</span>
           </div>
           <div class="step-arrow">→</div>
           <div class="step">
             <div class="step-number">2</div>
-            <span>Completa la acción</span>
+            <span data-i18n="step2">Completa la acción</span>
           </div>
           <div class="step-arrow">→</div>
           <div class="step">
             <div class="step-number">3</div>
-            <span>¡Conéctate!</span>
+            <span data-i18n="step3">¡Conéctate!</span>
           </div>
         </div>
       </div>
@@ -61,8 +68,8 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
         <div class="option-content">
-          <h3>Suscríbete a nuestro boletín</h3>
-          <p>Recibe ofertas exclusivas y novedades del hotel</p>
+          <h3 data-i18n="email_title">Suscríbete a nuestro boletín</h3>
+          <p data-i18n="email_desc">Recibe ofertas exclusivas y novedades del hotel</p>
         </div>
         <form class="email-form" id="emailForm">
           <div class="input-group">
@@ -70,11 +77,12 @@ import Layout from '../layouts/Layout.astro';
               type="email"
               id="emailInput"
               placeholder="tucorreo@ejemplo.com"
+              data-i18n-placeholder="email_placeholder"
               required
               autocomplete="email"
             />
             <button type="submit" class="btn btn-primary btn-submit">
-              <span class="btn-text">Suscribirme</span>
+              <span class="btn-text" data-i18n="email_btn">Suscribirme</span>
               <span class="btn-loader hidden">
                 <svg width="20" height="20" viewBox="0 0 24 24" class="spinner">
                   <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
@@ -82,7 +90,7 @@ import Layout from '../layouts/Layout.astro';
               </span>
             </button>
           </div>
-          <p class="form-note">No spam. Puedes cancelar cuando quieras.</p>
+          <p class="form-note" data-i18n="email_note">No spam. Puedes cancelar cuando quieras.</p>
         </form>
       </div>
 
@@ -96,8 +104,8 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
         <div class="option-content">
-          <h3>Síguenos en Instagram</h3>
-          <p>Descubre momentos únicos de Hotel Cesar</p>
+          <h3 data-i18n="follow_title">Síguenos en Instagram</h3>
+          <p data-i18n="follow_desc">Descubre momentos únicos de Hotel Cesar</p>
         </div>
         <div class="action-row">
           <button class="btn btn-instagram" id="btnFollow" onclick="openInstagram('follow')">
@@ -105,10 +113,10 @@ import Layout from '../layouts/Layout.astro';
               <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
               <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
             </svg>
-            Ir a Instagram
+            <span data-i18n="follow_btn">Ir a Instagram</span>
           </button>
           <button class="btn btn-confirm hidden" id="btnFollowConfirm" onclick="confirmAction('follow')">
-            ✓ Ya seguí la cuenta
+            <span data-i18n="follow_confirm">✓ Ya seguí la cuenta</span>
           </button>
         </div>
       </div>
@@ -121,18 +129,18 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
         <div class="option-content">
-          <h3>Dale Like a nuestra publicación</h3>
-          <p>Apoya nuestro contenido con un ❤️</p>
+          <h3 data-i18n="like_title">Dale Like a nuestra publicación</h3>
+          <p data-i18n="like_desc">Apoya nuestro contenido con un ❤️</p>
         </div>
         <div class="action-row">
           <button class="btn btn-instagram" id="btnLike" onclick="openInstagram('like')">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
             </svg>
-            Ver publicación
+            <span data-i18n="like_btn">Ver publicación</span>
           </button>
           <button class="btn btn-confirm hidden" id="btnLikeConfirm" onclick="confirmAction('like')">
-            ✓ Ya di like
+            <span data-i18n="like_confirm">✓ Ya di like</span>
           </button>
         </div>
       </div>
@@ -145,18 +153,18 @@ import Layout from '../layouts/Layout.astro';
           </svg>
         </div>
         <div class="option-content">
-          <h3>Déjanos una reseña en Google</h3>
-          <p>Tu opinión nos ayuda a mejorar</p>
+          <h3 data-i18n="review_title">Déjanos una reseña en Google</h3>
+          <p data-i18n="review_desc">Tu opinión nos ayuda a mejorar</p>
         </div>
         <div class="action-row">
           <button class="btn btn-google" id="btnReview" onclick="openGoogle()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
             </svg>
-            Ir a Google
+            <span data-i18n="review_btn">Ir a Google</span>
           </button>
           <button class="btn btn-confirm hidden" id="btnReviewConfirm" onclick="confirmAction('review')">
-            ✓ Ya dejé mi reseña
+            <span data-i18n="review_confirm">✓ Ya dejé mi reseña</span>
           </button>
         </div>
       </div>
@@ -164,8 +172,8 @@ import Layout from '../layouts/Layout.astro';
       <div class="divider"></div>
 
       <p class="footer-text">
-        Al continuar, aceptas nuestros <a href="#" class="link">Términos de Uso</a> y
-        <a href="#" class="link">Política de Privacidad</a>.
+        <span data-i18n="footer_legal_pre">Al continuar, aceptas nuestros</span> <a href="#" class="link" data-i18n="footer_terms">Términos de Uso</a> <span data-i18n="footer_legal_and">y</span>
+        <a href="#" class="link" data-i18n="footer_privacy">Política de Privacidad</a>.
       </p>
     </div>
 
@@ -180,15 +188,15 @@ import Layout from '../layouts/Layout.astro';
         />
         <div class="footer-info">
           <h3>Hotel Cesar</h3>
-          <p>Una experiencia de hospitalidad incomparable. Lujo, confort y atención personalizada para hacer de tu estancia un momento inolvidable.</p>
+          <p data-i18n="hotel_desc">Una experiencia de hospitalidad incomparable. Lujo, confort y atención personalizada para hacer de tu estancia un momento inolvidable.</p>
           <div class="footer-contact">
             <span>📍 Carrer d'Isaac Peral, 4, 8, 08800 Vilanova i la Geltrú, Barcelona</span>
             <span>📞 +34 93 815 11 25</span>
           </div>
         </div>
       </div>
-      <p class="copyright">© 2026 Hotel Cesar. Todos los derechos reservados.</p>
-      <p class="developed-by">Desarrollado por <a href="https://fooserd.com" target="_blank" rel="noopener noreferrer" class="fooserd-link">Fooserd</a></p>
+      <p class="copyright" data-i18n="copyright">© 2026 Hotel Cesar. Todos los derechos reservados.</p>
+      <p class="developed-by"><span data-i18n="developed_by">Desarrollado por</span> <a href="https://fooserd.com" target="_blank" rel="noopener noreferrer" class="fooserd-link">Fooserd</a></p>
     </footer>
   </main>
 
@@ -201,15 +209,15 @@ import Layout from '../layouts/Layout.astro';
           <path d="M8 12l3 3 5-5"/>
         </svg>
       </div>
-      <h2>¡Gracias!</h2>
-      <p>Ya puedes conectarte a la red WiFi de Hotel Cesar.</p>
+      <h2 data-i18n="modal_thanks">¡Gracias!</h2>
+      <p data-i18n="modal_desc">Ya puedes conectarte a la red WiFi de Hotel Cesar.</p>
       <div class="wifi-details">
         <div class="wifi-detail-row">
-          <span class="label">Red:</span>
+          <span class="label" data-i18n="modal_network">Red:</span>
           <span class="value">HotelCesar_Guest</span>
         </div>
         <div class="wifi-detail-row">
-          <span class="label">Contraseña:</span>
+          <span class="label" data-i18n="modal_password">Contraseña:</span>
           <span class="value password-value" id="wifiPassword">Cesar2026!</span>
           <button class="btn-copy" onclick="copyPassword()" title="Copiar contraseña">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -219,13 +227,52 @@ import Layout from '../layouts/Layout.astro';
           </button>
         </div>
       </div>
-      <button class="btn btn-primary btn-full" onclick="closeModal()">Aceptar</button>
-      <p class="modal-note">Disfruta tu estancia en Hotel Cesar ✨</p>
+      <button class="btn btn-primary btn-full" onclick="closeModal()" data-i18n="modal_accept">Aceptar</button>
+      <p class="modal-note" data-i18n="modal_enjoy">Disfruta tu estancia en Hotel Cesar ✨</p>
     </div>
   </div>
 </Layout>
 
 <style>
+  /* ===== Language Switcher ===== */
+  .lang-switcher {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    display: flex;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(8px);
+    border-radius: 10px;
+    padding: 4px;
+  }
+
+  .lang-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 7px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.03em;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .lang-btn:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--white);
+    box-shadow: 0 2px 6px rgba(201, 169, 110, 0.4);
+  }
+
   /* ===== Hero ===== */
   .hero {
     position: relative;
@@ -868,5 +915,172 @@ import Layout from '../layouts/Layout.astro';
   (window as any).closeModal = closeModal;
   (window as any).copyPassword = copyPassword;
   (window as any).autoConnect = autoConnect;
+
+  // ===== Multi-language i18n =====
+  const translations: Record<string, Record<string, string>> = {
+    es: {
+      wifi_title: 'WiFi Gratis',
+      step1: 'Elige una opción',
+      step2: 'Completa la acción',
+      step3: '¡Conéctate!',
+      email_title: 'Suscríbete a nuestro boletín',
+      email_desc: 'Recibe ofertas exclusivas y novedades del hotel',
+      email_btn: 'Suscribirme',
+      email_note: 'No spam. Puedes cancelar cuando quieras.',
+      email_placeholder: 'tucorreo@ejemplo.com',
+      follow_title: 'Síguenos en Instagram',
+      follow_desc: 'Descubre momentos únicos de Hotel Cesar',
+      follow_btn: 'Ir a Instagram',
+      follow_confirm: '✓ Ya seguí la cuenta',
+      like_title: 'Dale Like a nuestra publicación',
+      like_desc: 'Apoya nuestro contenido con un ❤️',
+      like_btn: 'Ver publicación',
+      like_confirm: '✓ Ya di like',
+      review_title: 'Déjanos una reseña en Google',
+      review_desc: 'Tu opinión nos ayuda a mejorar',
+      review_btn: 'Ir a Google',
+      review_confirm: '✓ Ya dejé mi reseña',
+      footer_legal_pre: 'Al continuar, aceptas nuestros',
+      footer_terms: 'Términos de Uso',
+      footer_legal_and: 'y',
+      footer_privacy: 'Política de Privacidad',
+      hotel_desc: 'Una experiencia de hospitalidad incomparable. Lujo, confort y atención personalizada para hacer de tu estancia un momento inolvidable.',
+      copyright: '© 2026 Hotel Cesar. Todos los derechos reservados.',
+      developed_by: 'Desarrollado por',
+      modal_thanks: '¡Gracias!',
+      modal_desc: 'Ya puedes conectarte a la red WiFi de Hotel Cesar.',
+      modal_network: 'Red:',
+      modal_password: 'Contraseña:',
+      modal_accept: 'Aceptar',
+      modal_enjoy: 'Disfruta tu estancia en Hotel Cesar ✨',
+    },
+    en: {
+      wifi_title: 'Free WiFi',
+      step1: 'Choose an option',
+      step2: 'Complete the action',
+      step3: 'Connect!',
+      email_title: 'Subscribe to our newsletter',
+      email_desc: 'Receive exclusive offers and hotel news',
+      email_btn: 'Subscribe',
+      email_note: 'No spam. Unsubscribe anytime.',
+      email_placeholder: 'youremail@example.com',
+      follow_title: 'Follow us on Instagram',
+      follow_desc: 'Discover unique moments at Hotel Cesar',
+      follow_btn: 'Go to Instagram',
+      follow_confirm: '✓ Already followed',
+      like_title: 'Like our post',
+      like_desc: 'Support our content with a ❤️',
+      like_btn: 'View post',
+      like_confirm: '✓ Already liked',
+      review_title: 'Leave us a Google review',
+      review_desc: 'Your feedback helps us improve',
+      review_btn: 'Go to Google',
+      review_confirm: '✓ Already reviewed',
+      footer_legal_pre: 'By continuing, you accept our',
+      footer_terms: 'Terms of Use',
+      footer_legal_and: 'and',
+      footer_privacy: 'Privacy Policy',
+      hotel_desc: 'An unparalleled hospitality experience. Luxury, comfort, and personalized attention to make your stay unforgettable.',
+      copyright: '© 2026 Hotel Cesar. All rights reserved.',
+      developed_by: 'Developed by',
+      modal_thanks: 'Thank you!',
+      modal_desc: 'You can now connect to Hotel Cesar\'s WiFi network.',
+      modal_network: 'Network:',
+      modal_password: 'Password:',
+      modal_accept: 'Accept',
+      modal_enjoy: 'Enjoy your stay at Hotel Cesar ✨',
+    },
+    ca: {
+      wifi_title: 'WiFi Gratis',
+      step1: 'Tria una opció',
+      step2: 'Completa l\'acció',
+      step3: 'Connecta\'t!',
+      email_title: 'Subscriu-te al nostre butlletí',
+      email_desc: 'Rep ofertes exclusives i novetats de l\'hotel',
+      email_btn: 'Subscriu-me',
+      email_note: 'Sense spam. Cancel·la quan vulguis.',
+      email_placeholder: 'elteumail@exemple.com',
+      follow_title: 'Segueix-nos a Instagram',
+      follow_desc: 'Descobreix moments únics de l\'Hotel Cesar',
+      follow_btn: 'Anar a Instagram',
+      follow_confirm: '✓ Ja he seguit el compte',
+      like_title: 'Dona Like a la nostra publicació',
+      like_desc: 'Dóna suport al nostre contingut amb un ❤️',
+      like_btn: 'Veure publicació',
+      like_confirm: '✓ Ja he donat like',
+      review_title: 'Deixa\'ns una ressenya a Google',
+      review_desc: 'La teva opinió ens ajuda a millorar',
+      review_btn: 'Anar a Google',
+      review_confirm: '✓ Ja he deixat la ressenya',
+      footer_legal_pre: 'En continuar, acceptes els nostres',
+      footer_terms: 'Termes d\'Ús',
+      footer_legal_and: 'i',
+      footer_privacy: 'Política de Privacitat',
+      hotel_desc: 'Una experiència d\'hospitalitat incomparable. Luxe, confort i atenció personalitzada per fer de la teva estada un moment inoblidable.',
+      copyright: '© 2026 Hotel Cesar. Tots els drets reservats.',
+      developed_by: 'Desenvolupat per',
+      modal_thanks: 'Gràcies!',
+      modal_desc: 'Ja pots connectar-te a la xarxa WiFi de l\'Hotel Cesar.',
+      modal_network: 'Xarxa:',
+      modal_password: 'Contrasenya:',
+      modal_accept: 'Acceptar',
+      modal_enjoy: 'Gaudeix de la teva estada a l\'Hotel Cesar ✨',
+    },
+  };
+
+  function setLang(lang: string) {
+    const dict = translations[lang];
+    if (!dict) return;
+
+    // Update all data-i18n text elements
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n')!;
+      if (dict[key]) el.textContent = dict[key];
+    });
+
+    // Update placeholders
+    document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-placeholder')!;
+      if (dict[key]) (el as HTMLInputElement).placeholder = dict[key];
+    });
+
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+
+    // Update html lang attribute
+    document.documentElement.lang = lang;
+
+    // Persist preference
+    localStorage.setItem('hotel_lang', lang);
+  }
+
+  // Auto-detect language on page load
+  function detectLang(): string {
+    // 1. Check stored preference
+    const stored = localStorage.getItem('hotel_lang');
+    if (stored && translations[stored]) return stored;
+
+    // 2. Detect from browser
+    const browserLang = navigator.language.toLowerCase();
+    if (browserLang.startsWith('ca')) return 'ca';
+    if (browserLang.startsWith('en')) return 'en';
+    // Default to Spanish
+    return 'es';
+  }
+
+  // Apply language on load
+  const detectedLang = detectLang();
+  if (detectedLang !== 'es') {
+    setLang(detectedLang);
+  } else {
+    // Still mark the active button for 'es'
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === 'es');
+    });
+  }
+
+  (window as any).setLang = setLang;
 </script>
 </Layout>
