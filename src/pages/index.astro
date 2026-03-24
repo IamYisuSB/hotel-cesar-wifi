@@ -187,22 +187,28 @@ import Layout from '../layouts/Layout.astro';
         </svg>
       </div>
       <h2>¡Gracias!</h2>
-      <p>Ya estás conectado a la red WiFi de Hotel Cesar.</p>
+      <p>Ya puedes conectarte a la red WiFi de Hotel Cesar.</p>
       <div class="wifi-details">
         <div class="wifi-detail-row">
           <span class="label">Red:</span>
           <span class="value">HotelCesar_Guest</span>
         </div>
         <div class="wifi-detail-row">
-          <span class="label">Velocidad:</span>
-          <span class="value">100 Mbps</span>
+          <span class="label">Contraseña:</span>
+          <span class="value password-value" id="wifiPassword">Cesar2026!</span>
+          <button class="btn-copy" onclick="copyPassword()" title="Copiar contraseña">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </button>
         </div>
         <div class="wifi-detail-row">
           <span class="label">Válido:</span>
           <span class="value">24 horas</span>
         </div>
       </div>
-      <button class="btn btn-primary btn-full" onclick="closeModal()">Comenzar a Navegar</button>
+      <a class="btn btn-primary btn-full" id="btnAutoConnect" href="javascript:void(0)" onclick="autoConnect()">📶 Conectar automáticamente</a>
       <p class="modal-note">Disfruta tu estancia en Hotel Cesar ✨</p>
     </div>
   </div>
@@ -578,8 +584,30 @@ import Layout from '../layouts/Layout.astro';
   .wifi-detail-row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 6px 0;
     font-size: 0.88rem;
+    gap: 8px;
+  }
+
+  .password-value {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-copy {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    padding: 4px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .btn-copy:hover {
+    color: var(--gold-dark);
   }
 
   .wifi-detail-row .label {
@@ -758,10 +786,35 @@ import Layout from '../layouts/Layout.astro';
     }, 1500);
   });
 
+  // ===== WiFi Config =====
+  const WIFI_SSID = 'HotelCesar_Guest';
+  const WIFI_PASSWORD = 'Cesar2026!';
+  const WIFI_TYPE = 'WPA'; // WPA, WEP, or nopass
+
+  // ===== Copy password =====
+  function copyPassword() {
+    navigator.clipboard.writeText(WIFI_PASSWORD).then(() => {
+      const btn = document.querySelector('.btn-copy') as HTMLElement;
+      btn.innerHTML = '✓';
+      setTimeout(() => {
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+      }, 2000);
+    });
+  }
+
+  // ===== Auto connect via Wi-Fi URI scheme =====
+  function autoConnect() {
+    // Standard Wi-Fi URI scheme (works on Android & iOS 11+)
+    const wifiUri = `WIFI:T:${WIFI_TYPE};S:${WIFI_SSID};P:${WIFI_PASSWORD};;`;
+    window.location.href = wifiUri;
+  }
+
   // Expose functions to global scope for onclick handlers
   (window as any).openInstagram = openInstagram;
   (window as any).openGoogle = openGoogle;
   (window as any).confirmAction = confirmAction;
   (window as any).closeModal = closeModal;
+  (window as any).copyPassword = copyPassword;
+  (window as any).autoConnect = autoConnect;
 </script>
 </Layout>
