@@ -648,9 +648,13 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ===== Responsive ===== */
+  @media (max-width: 600px) {
+    .logo-img { width: 100px; }
+  }
+
   @media (max-width: 400px) {
     .hero { height: 220px; }
-    .hotel-name { font-size: 2rem; }
+    .logo-img { width: 80px; }
     .wifi-card { padding: 24px 18px; }
     .input-group { flex-direction: column; }
     .btn-submit { width: 100%; }
