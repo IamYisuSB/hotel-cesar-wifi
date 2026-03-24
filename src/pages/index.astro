@@ -1,0 +1,745 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Hotel Cesar · WiFi Gratis">
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-overlay"></div>
+    <img
+      src="/img/banner.jpg"
+      alt="Hotel Cesar - Fachada"
+      class="hero-img"
+      loading="eager"
+    />
+    <div class="hero-content">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="/img/logo.png" alt="Logo Hotel Cesar" class="logo-img" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="wifi-card">
+      <div class="wifi-header">
+        <div class="wifi-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+          </svg>
+        </div>
+        <h2>WiFi Gratis</h2>
+        <p class="wifi-subtitle">Conéctate en un solo paso. Elige una de las opciones para acceder a internet de alta velocidad.</p>
+      </div>
+
+      <!-- Option 1: Email Newsletter -->
+      <div class="option-card" id="option-email">
+        <div class="option-icon email-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M22 4L12 13L2 4"/>
+          </svg>
+        </div>
+        <div class="option-content">
+          <h3>Suscríbete a nuestro boletín</h3>
+          <p>Recibe ofertas exclusivas y novedades del hotel</p>
+        </div>
+        <form class="email-form" id="emailForm">
+          <div class="input-group">
+            <input
+              type="email"
+              id="emailInput"
+              placeholder="tucorreo@ejemplo.com"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="btn btn-primary btn-submit">
+              <span class="btn-text">Suscribirme</span>
+              <span class="btn-loader hidden">
+                <svg width="20" height="20" viewBox="0 0 24 24" class="spinner">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+          </div>
+          <p class="form-note">No spam. Puedes cancelar cuando quieras.</p>
+        </form>
+      </div>
+
+      <!-- Option 2: Follow on Instagram -->
+      <div class="option-card" id="option-follow">
+        <div class="option-icon instagram-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="option-content">
+          <h3>Síguenos en Instagram</h3>
+          <p>Descubre momentos únicos de Hotel Cesar</p>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-instagram" id="btnFollow" onclick="openInstagram('follow')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Ir a Instagram
+          </button>
+          <button class="btn btn-confirm hidden" id="btnFollowConfirm" onclick="confirmAction('follow')">
+            ✓ Ya seguí la cuenta
+          </button>
+        </div>
+      </div>
+
+      <!-- Option 3: Like a Post -->
+      <div class="option-card" id="option-like">
+        <div class="option-icon like-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+        <div class="option-content">
+          <h3>Dale Like a nuestra publicación</h3>
+          <p>Apoya nuestro contenido con un ❤️</p>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-instagram" id="btnLike" onclick="openInstagram('like')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+            Ver publicación
+          </button>
+          <button class="btn btn-confirm hidden" id="btnLikeConfirm" onclick="confirmAction('like')">
+            ✓ Ya di like
+          </button>
+        </div>
+      </div>
+
+      <!-- Option 4: Google Review -->
+      <div class="option-card" id="option-review">
+        <div class="option-icon review-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div class="option-content">
+          <h3>Déjanos una reseña en Google</h3>
+          <p>Tu opinión nos ayuda a mejorar</p>
+        </div>
+        <div class="action-row">
+          <button class="btn btn-google" id="btnReview" onclick="openGoogle()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            Ir a Google
+          </button>
+          <button class="btn btn-confirm hidden" id="btnReviewConfirm" onclick="confirmAction('review')">
+            ✓ Ya dejé mi reseña
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="footer-text">
+        Al continuar, aceptas nuestros <a href="#" class="link">Términos de Uso</a> y
+        <a href="#" class="link">Política de Privacidad</a>.
+      </p>
+    </div>
+
+    <!-- Hotel Info Footer -->
+    <footer class="hotel-footer">
+      <div class="footer-inner">
+        <img
+          src="/img/banner.jpg"
+          alt="Hotel Cesar"
+          class="footer-img"
+          loading="lazy"
+        />
+        <div class="footer-info">
+          <h3>Hotel Cesar</h3>
+          <p>Una experiencia de hospitalidad incomparable. Lujo, confort y atención personalizada para hacer de tu estancia un momento inolvidable.</p>
+          <div class="footer-contact">
+            <span>📍 Carrer d'Isaac Peral, 4, 8, 08800 Vilanova i la Geltrú, Barcelona</span>
+            <span>📞 +34 93 815 11 25</span>
+          </div>
+        </div>
+      </div>
+      <p class="copyright">© 2026 Hotel Cesar. Todos los derechos reservados.</p>
+    </footer>
+  </main>
+
+  <!-- Success Modal -->
+  <div class="modal-overlay hidden" id="successModal">
+    <div class="modal">
+      <div class="modal-check">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12l3 3 5-5"/>
+        </svg>
+      </div>
+      <h2>¡Gracias!</h2>
+      <p>Ya estás conectado a la red WiFi de Hotel Cesar.</p>
+      <div class="wifi-details">
+        <div class="wifi-detail-row">
+          <span class="label">Red:</span>
+          <span class="value">HotelCesar_Guest</span>
+        </div>
+        <div class="wifi-detail-row">
+          <span class="label">Velocidad:</span>
+          <span class="value">100 Mbps</span>
+        </div>
+        <div class="wifi-detail-row">
+          <span class="label">Válido:</span>
+          <span class="value">24 horas</span>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="closeModal()">Comenzar a Navegar</button>
+      <p class="modal-note">Disfruta tu estancia en Hotel Cesar ✨</p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 340px;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 60%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 26, 46, 0.3) 0%,
+      rgba(26, 26, 46, 0.7) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  .logo {
+    text-align: center;
+    color: var(--white);
+  }
+
+  .logo-icon {
+    color: var(--gold);
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 8px rgba(201, 169, 110, 0.4));
+  }
+
+  .logo-img {
+    width: 160px;
+    height: auto;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .hotel-name {
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .hotel-tagline {
+    font-size: 0.95rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-top: 4px;
+  }
+
+  /* ===== Container ===== */
+  .container {
+    width: 100%;
+    max-width: 480px;
+    padding: 0 16px 32px;
+    margin-top: -40px;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ===== WiFi Card ===== */
+  .wifi-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 32px 24px;
+    margin-bottom: 24px;
+  }
+
+  .wifi-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .wifi-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    border-radius: 50%;
+    color: var(--white);
+    margin-bottom: 16px;
+    box-shadow: 0 4px 16px rgba(201, 169, 110, 0.35);
+  }
+
+  .wifi-header h2 {
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .wifi-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.5;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* ===== Option Cards ===== */
+  .option-card {
+    background: var(--cream);
+    border: 1px solid var(--cream-dark);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 14px;
+    transition: all 0.25s ease;
+  }
+
+  .option-card:hover {
+    border-color: var(--gold-light);
+    box-shadow: 0 2px 12px rgba(201, 169, 110, 0.15);
+  }
+
+  .option-card .option-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+  }
+
+  .email-icon { background: #eef4ff; color: #4a7cff; }
+  .instagram-icon { background: #ffeef5; color: #e1306c; }
+  .like-icon { background: #fff0f0; color: #ff4757; }
+  .review-icon { background: #fff8ee; color: #f39c12; }
+
+  .option-content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--dark);
+  }
+
+  .option-content p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
+
+  /* ===== Email Form ===== */
+  .email-form {
+    margin-top: 4px;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .input-group input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1.5px solid var(--cream-dark);
+    border-radius: 10px;
+    font-size: 0.9rem;
+    background: var(--white);
+    color: var(--text);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  .input-group input:focus {
+    border-color: var(--gold);
+  }
+
+  .input-group input::placeholder {
+    color: #b0b0b0;
+  }
+
+  .form-note {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    margin-top: 8px;
+    text-align: center;
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 16px rgba(201, 169, 110, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-instagram {
+    background: linear-gradient(135deg, #833ab4, #e1306c, #fd1d1d);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(225, 48, 108, 0.3);
+  }
+
+  .btn-instagram:hover {
+    box-shadow: 0 4px 16px rgba(225, 48, 108, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-google {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+  }
+
+  .btn-google:hover {
+    box-shadow: 0 4px 16px rgba(66, 133, 244, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-confirm {
+    background: var(--success);
+    color: var(--white);
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .btn-confirm:hover {
+    box-shadow: 0 4px 16px rgba(46, 204, 113, 0.45);
+    transform: translateY(-1px);
+  }
+
+  .btn-full {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+  }
+
+  .btn-submit {
+    min-width: 120px;
+  }
+
+  .action-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  /* ===== Utilities ===== */
+  .hidden {
+    display: none !important;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--cream-dark);
+    margin: 20px 0 16px;
+  }
+
+  .footer-text {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .link {
+    color: var(--gold-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* ===== Spinner ===== */
+  .spinner {
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ===== Modal ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 36px 28px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.4s ease;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .modal-check {
+    margin-bottom: 16px;
+  }
+
+  .modal h2 {
+    font-size: 1.6rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .modal > p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+
+  .wifi-details {
+    background: var(--cream);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+
+  .wifi-detail-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 0.88rem;
+  }
+
+  .wifi-detail-row .label {
+    color: var(--text-light);
+  }
+
+  .wifi-detail-row .value {
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  .modal-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 12px;
+  }
+
+  /* ===== Hotel Footer ===== */
+  .hotel-footer {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .footer-inner {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  .footer-img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+  }
+
+  .footer-info {
+    padding: 20px 24px;
+  }
+
+  .footer-info h3 {
+    font-size: 1.15rem;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .footer-info > p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  .copyright {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    padding: 16px 0 4px;
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 400px) {
+    .hero { height: 220px; }
+    .hotel-name { font-size: 2rem; }
+    .wifi-card { padding: 24px 18px; }
+    .input-group { flex-direction: column; }
+    .btn-submit { width: 100%; }
+    .action-row { flex-direction: column; }
+    .action-row .btn { width: 100%; }
+  }
+</style>
+
+<script>
+  // ===== Configuration =====
+  // Replace these with real URLs for the actual hotel
+  const CONFIG = {
+    instagramProfile: 'https://www.instagram.com/hotelcesar/',
+    instagramPost: 'https://www.instagram.com/p/DVqL-JjDBVq/',
+    googleReview: 'https://www.google.com/maps/place/Hotel+Cesar/@41.2144378,1.7232226,17z/data=!4m8!3m7!1s0x12a386f1be628725:0xae9c7861e78b0c8c!8m2!3d41.2144378!4d1.7232226!9m1!1b1!16s%2Fg%2F1tfx_bxk',
+    confirmDelay: 5000, // ms before "confirm" button appears
+  };
+
+  // ===== Timer-based confirm buttons =====
+  function openInstagram(type: string) {
+    const url = type === 'follow' ? CONFIG.instagramProfile : CONFIG.instagramPost;
+    window.open(url, '_blank', 'noopener,noreferrer');
+
+    const confirmBtn = document.getElementById(
+      type === 'follow' ? 'btnFollowConfirm' : 'btnLikeConfirm'
+    );
+
+    // Show confirm button after delay
+    setTimeout(() => {
+      confirmBtn?.classList.remove('hidden');
+    }, CONFIG.confirmDelay);
+  }
+
+  function openGoogle() {
+    window.open(CONFIG.googleReview, '_blank', 'noopener,noreferrer');
+
+    setTimeout(() => {
+      document.getElementById('btnReviewConfirm')?.classList.remove('hidden');
+    }, CONFIG.confirmDelay);
+  }
+
+  function confirmAction(_action: string) {
+    showSuccess();
+  }
+
+  function showSuccess() {
+    document.getElementById('successModal')?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('successModal')?.classList.add('hidden');
+    document.body.style.overflow = '';
+    // In a real captive portal, you would redirect to the gateway here
+    // window.location.href = 'http://gateway.hotel/login?grant=true';
+  }
+
+  // ===== Email form =====
+  document.getElementById('emailForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const input = document.getElementById('emailInput') as HTMLInputElement;
+    const btnText = form.querySelector('.btn-text') as HTMLElement;
+    const btnLoader = form.querySelector('.btn-loader') as HTMLElement;
+    const submitBtn = form.querySelector('.btn-submit') as HTMLButtonElement;
+
+    if (!input.value) return;
+
+    // Show loading state
+    btnText.classList.add('hidden');
+    btnLoader.classList.remove('hidden');
+    submitBtn.disabled = true;
+
+    // Simulate API call (replace with real endpoint)
+    setTimeout(() => {
+      showSuccess();
+      // Reset form
+      btnText.classList.remove('hidden');
+      btnLoader.classList.add('hidden');
+      submitBtn.disabled = false;
+      input.value = '';
+    }, 1500);
+  });
+
+  // Expose functions to global scope for onclick handlers
+  (window as any).openInstagram = openInstagram;
+  (window as any).openGoogle = openGoogle;
+  (window as any).confirmAction = confirmAction;
+  (window as any).closeModal = closeModal;
+</script>
+</Layout>
