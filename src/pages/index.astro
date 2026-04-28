@@ -835,6 +835,54 @@ import Layout from '../layouts/Layout.astro';
   };
 
   // ===== Timer-based confirm buttons =====
+  const ACTION_CONFIRM_BUTTONS: Record<string, string> = {
+    follow: 'btnFollowConfirm',
+    like: 'btnLikeConfirm',
+    review: 'btnReviewConfirm',
+  };
+
+  const ACTION_STORAGE_PREFIX = 'hotel_action_started_';
+
+  function getActionStorageKey(action: string) {
+    return `${ACTION_STORAGE_PREFIX}${action}`;
+  }
+
+  function revealConfirmButton(action: string) {
+    const buttonId = ACTION_CONFIRM_BUTTONS[action];
+    if (!buttonId) return;
+    document.getElementById(buttonId)?.classList.remove('hidden');
+  }
+
+  function startConfirmTimer(action: string) {
+    localStorage.setItem(getActionStorageKey(action), String(Date.now()));
+    setTimeout(() => {
+      revealConfirmButton(action);
+    }, CONFIG.confirmDelay);
+  }
+
+  function restorePendingConfirmButtons() {
+    (['follow', 'like', 'review'] as const).forEach((action) => {
+      const rawStartedAt = localStorage.getItem(getActionStorageKey(action));
+      if (!rawStartedAt) return;
+
+      const startedAt = Number(rawStartedAt);
+      if (Number.isNaN(startedAt)) {
+        localStorage.removeItem(getActionStorageKey(action));
+        return;
+      }
+
+      const elapsed = Date.now() - startedAt;
+      if (elapsed >= CONFIG.confirmDelay) {
+        revealConfirmButton(action);
+        return;
+      }
+
+      setTimeout(() => {
+        revealConfirmButton(action);
+      }, CONFIG.confirmDelay - elapsed);
+    });
+  }
+
   function openInstagram(type: string) {
     const url = type === 'follow' ? CONFIG.instagramProfile : CONFIG.instagramPost;
     // Some desktop browsers block popups; fallback to same-tab navigation.
@@ -843,14 +891,7 @@ import Layout from '../layouts/Layout.astro';
       window.location.href = url;
     }
 
-    const confirmBtn = document.getElementById(
-      type === 'follow' ? 'btnFollowConfirm' : 'btnLikeConfirm'
-    );
-
-    // Show confirm button after delay
-    setTimeout(() => {
-      confirmBtn?.classList.remove('hidden');
-    }, CONFIG.confirmDelay);
+    startConfirmTimer(type);
   }
 
   function openGoogle() {
@@ -860,14 +901,15 @@ import Layout from '../layouts/Layout.astro';
       window.location.href = CONFIG.googleReview;
     }
 
-    setTimeout(() => {
-      document.getElementById('btnReviewConfirm')?.classList.remove('hidden');
-    }, CONFIG.confirmDelay);
+    startConfirmTimer('review');
   }
 
-  function confirmAction(_action: string) {
+  function confirmAction(action: string) {
+    localStorage.removeItem(getActionStorageKey(action));
     showSuccess();
   }
+
+  restorePendingConfirmButtons();
 
   function showSuccess() {
     document.getElementById('successModal')?.classList.remove('hidden');
