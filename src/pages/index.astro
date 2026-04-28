@@ -228,6 +228,9 @@ import Layout from '../layouts/Layout.astro';
           </button>
         </div>
       </div>
+      <p class="manual-instructions" data-i18n="modal_manual_instructions">
+        Conéctate manualmente: abre Ajustes &gt; WiFi, selecciona "hotelcesar" y escribe la contraseña "clienthotelcesar".
+      </p>
       <button class="btn btn-primary btn-full" onclick="closeModal()" data-i18n="modal_accept">Aceptar</button>
       <p class="modal-note" data-i18n="modal_enjoy">Disfruta tu estancia en Hotel Cesar ✨</p>
     </div>
@@ -690,6 +693,18 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: 20px;
   }
 
+  .manual-instructions {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-light);
+    background: #f7f3ec;
+    border: 1px solid var(--cream-dark);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: -6px 0 16px;
+    text-align: left;
+  }
+
   .wifi-detail-row {
     display: flex;
     justify-content: space-between;
@@ -1016,6 +1031,7 @@ import Layout from '../layouts/Layout.astro';
       modal_network: 'Red:',
       modal_password: 'Contraseña:',
       modal_accept: 'Aceptar',
+      modal_manual_instructions: 'Conéctate manualmente: abre Ajustes > WiFi, selecciona "hotelcesar" y escribe la contraseña "clienthotelcesar".',
       modal_enjoy: 'Disfruta tu estancia en Hotel Cesar ✨',
     },
     en: {
@@ -1052,6 +1068,7 @@ import Layout from '../layouts/Layout.astro';
       modal_network: 'Network:',
       modal_password: 'Password:',
       modal_accept: 'Accept',
+      modal_manual_instructions: 'Connect manually: open Settings > WiFi, select "hotelcesar" and enter the password "clienthotelcesar".',
       modal_enjoy: 'Enjoy your stay at Hotel Cesar ✨',
     },
     ca: {
@@ -1088,6 +1105,7 @@ import Layout from '../layouts/Layout.astro';
       modal_network: 'Xarxa:',
       modal_password: 'Contrasenya:',
       modal_accept: 'Acceptar',
+      modal_manual_instructions: 'Connecta\'t manualment: obre Configuració > WiFi, selecciona "hotelcesar" i escriu la contrasenya "clienthotelcesar".',
       modal_enjoy: 'Gaudeix de la teva estada a l\'Hotel Cesar ✨',
     },
     fr: {
@@ -1124,6 +1142,7 @@ import Layout from '../layouts/Layout.astro';
       modal_network: 'Réseau :',
       modal_password: 'Mot de passe :',
       modal_accept: 'Accepter',
+      modal_manual_instructions: 'Connectez-vous manuellement : ouvrez Réglages > WiFi, sélectionnez "hotelcesar" et saisissez le mot de passe "clienthotelcesar".',
       modal_enjoy: 'Profitez de votre séjour à l\'Hotel Cesar ✨',
     },
   };
