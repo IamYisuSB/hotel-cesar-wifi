@@ -846,6 +846,7 @@ import Layout from '../layouts/Layout.astro';
     instagramProfile: 'https://www.instagram.com/hotelcesar/',
     instagramPost: 'https://www.instagram.com/p/DVqL-JjDBVq/',
     googleReview: 'https://www.google.com/maps/place/Hotel+Cesar/@41.2144378,1.7232226,17z/data=!4m8!3m7!1s0x12a386f1be628725:0xae9c7861e78b0c8c!8m2!3d41.2144378!4d1.7232226!9m1!1b1!16s%2Fg%2F1tfx_bxk',
+    newsletterWebhook: '', // Google Apps Script Web App URL
     confirmDelay: 5000, // ms before "confirm" button appears
   };
 
@@ -936,8 +937,33 @@ import Layout from '../layouts/Layout.astro';
     window.location.href = 'https://www.google.com';
   }
 
+  async function submitNewsletterEmail(email: string) {
+    // Keep demo behavior if webhook is not configured yet.
+    if (!CONFIG.newsletterWebhook) {
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      return;
+    }
+
+    const payload = new URLSearchParams({
+      email,
+      source: 'hotel-wifi-portal',
+      lang: document.documentElement.lang || 'es',
+      timestamp: new Date().toISOString(),
+    });
+
+    const response = await fetch(CONFIG.newsletterWebhook, {
+      method: 'POST',
+      body: payload,
+      mode: 'cors',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Newsletter request failed with status ${response.status}`);
+    }
+  }
+
   // ===== Email form =====
-  document.getElementById('emailForm')?.addEventListener('submit', (e) => {
+  document.getElementById('emailForm')?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const form = e.target as HTMLFormElement;
@@ -952,13 +978,20 @@ import Layout from '../layouts/Layout.astro';
     btnLoader.classList.remove('hidden');
     submitBtn.disabled = true;
 
-    setTimeout(() => {
+    try {
+      await submitNewsletterEmail(input.value.trim());
       showSuccess();
       btnText.classList.remove('hidden');
       btnLoader.classList.add('hidden');
       submitBtn.disabled = false;
       input.value = '';
-    }, 1500);
+    } catch (error) {
+      console.error('Newsletter submit failed:', error);
+      btnText.classList.remove('hidden');
+      btnLoader.classList.add('hidden');
+      submitBtn.disabled = false;
+      alert('No se pudo guardar el correo. Intentalo de nuevo.');
+    }
   });
 
   // ===== WiFi Config =====
