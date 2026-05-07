@@ -91,7 +91,12 @@ import Layout from '../layouts/Layout.astro';
               </span>
             </button>
           </div>
-          <p class="form-note" data-i18n="email_note">No spam. Puedes cancelar cuando quieras.</p>
+          <p class="form-note">
+            <span data-i18n="email_note">No spam. Puedes cancelar cuando quieras.</span>
+            <br />
+            <span data-i18n="email_privacy_prefix">Al enviar tu correo aceptas las</span>
+            <a href="https://www.hotelcesar.net/aviso-legal/" target="_blank" rel="noopener noreferrer" class="link" data-i18n="email_privacy_link">políticas de privacidad</a>.
+          </p>
         </form>
       </div>
 
@@ -977,6 +982,8 @@ import Layout from '../layouts/Layout.astro';
       email_desc: 'Recibe ofertas exclusivas y novedades del hotel',
       email_btn: 'Suscribirme',
       email_note: 'No spam. Puedes cancelar cuando quieras.',
+      email_privacy_prefix: 'Al enviar tu correo aceptas las',
+      email_privacy_link: 'políticas de privacidad',
       email_placeholder: 'tucorreo@ejemplo.com',
       follow_title: 'Síguenos en Instagram',
       follow_desc: 'Descubre momentos únicos de Hotel Cesar',
@@ -1006,6 +1013,8 @@ import Layout from '../layouts/Layout.astro';
       email_desc: 'Receive exclusive offers and hotel news',
       email_btn: 'Subscribe',
       email_note: 'No spam. Unsubscribe anytime.',
+      email_privacy_prefix: 'By sending your email you accept the',
+      email_privacy_link: 'privacy policies',
       email_placeholder: 'youremail@example.com',
       follow_title: 'Follow us on Instagram',
       follow_desc: 'Discover unique moments at Hotel Cesar',
@@ -1035,6 +1044,8 @@ import Layout from '../layouts/Layout.astro';
       email_desc: 'Rep ofertes exclusives i novetats de l\'hotel',
       email_btn: 'Subscriu-me',
       email_note: 'Sense spam. Cancel·la quan vulguis.',
+      email_privacy_prefix: 'En enviar el teu correu acceptes les',
+      email_privacy_link: 'polítiques de privacitat',
       email_placeholder: 'elteumail@exemple.com',
       follow_title: 'Segueix-nos a Instagram',
       follow_desc: 'Descobreix moments únics de l\'Hotel Cesar',
@@ -1064,6 +1075,8 @@ import Layout from '../layouts/Layout.astro';
       email_desc: 'Recevez des offres exclusives et les nouveautés de l\'hôtel',
       email_btn: 'S\'abonner',
       email_note: 'Pas de spam. Désabonnez-vous à tout moment.',
+      email_privacy_prefix: 'En envoyant votre e-mail, vous acceptez les',
+      email_privacy_link: 'politiques de confidentialité',
       email_placeholder: 'votreemail@exemple.com',
       follow_title: 'Suivez-nous sur Instagram',
       follow_desc: 'Découvrez des moments uniques à l\'Hotel Cesar',
