@@ -951,6 +951,19 @@ import Layout from '../layouts/Layout.astro';
       timestamp: new Date().toISOString(),
     });
 
+    const isGoogleAppsScript = CONFIG.newsletterWebhook.includes('script.google.com');
+
+    // Google Apps Script Web Apps often reject CORS checks from browser fetch.
+    // In no-cors mode, the request is still sent and processed server-side.
+    if (isGoogleAppsScript) {
+      await fetch(CONFIG.newsletterWebhook, {
+        method: 'POST',
+        body: payload,
+        mode: 'no-cors',
+      });
+      return;
+    }
+
     const response = await fetch(CONFIG.newsletterWebhook, {
       method: 'POST',
       body: payload,
